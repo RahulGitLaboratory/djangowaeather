@@ -1,19 +1,24 @@
 # This is my views.py file 
 
 from django.shortcuts import render
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 # Create your views here.
 
 def home(request):
     import json
     import requests
+    API_KEY = os.getenv("API_KEY")
 
     if request.method == "POST":
         zipcode = request.POST['zipcode']
         # return render(request, 'home.html', {'zipcode' : zipcode})
 
-        api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=" + zipcode + "&distance=5&API_KEY=B3D00C59-BF59-4288-A4D6-E7E70B21E37D")
-        # https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=89129&distance=5&API_KEY=B3D00C59-BF59-4288-A4D6-E7E70B21E37D
+        api_request = requests.get(f"https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=" + zipcode + "&distance=5&API_KEY={API_KEY}")
+        
         try:
             api = json.loads(api_request.content)
         except Exception as e:
