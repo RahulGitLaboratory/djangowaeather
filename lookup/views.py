@@ -17,7 +17,7 @@ def home(request):
         zipcode = request.POST['zipcode']
         # return render(request, 'home.html', {'zipcode' : zipcode})
 
-        api_request = requests.get(f"https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=" + zipcode + "&distance=5&API_KEY={API_KEY}")
+        api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=" + zipcode + f"&distance=5&API_KEY={API_KEY}")
         
         try:
             api = json.loads(api_request.content)
