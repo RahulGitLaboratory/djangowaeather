@@ -52,8 +52,7 @@ def home(request):
 
 
     else:
-        api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=89129&distance=5&API_KEY=B3D00C59-BF59-4288-A4D6-E7E70B21E37D")
-        # https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=89129&distance=5&API_KEY=B3D00C59-BF59-4288-A4D6-E7E70B21E37D
+        api_request = requests.get(f"https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=89129&distance=5&API_KEY={API_KEY}")
         try:
             api = json.loads(api_request.content)
         except Exception as e:
